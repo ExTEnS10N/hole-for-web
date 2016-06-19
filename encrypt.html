@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>加密</title>
+	<link rel="stylesheet" type="text/css" href="css/hole.css">
+    <script type="text/javascript" src="js/hole.js"></script>
+    <style>
+    	.button-area{
+			display: block;
+		}
+		.no-border-button{
+			margin-top: 25pt;
+		}
+		#page-algorithmSelect{
+			visibility: hidden;
+		}
+		.placeholder{
+			display: block;
+			margin: 15px 15px 15px 15px;
+			color: #989898;
+		}
+    </style>
+</head>
+<body>
+	<div class="page" id="page-input">
+		<div class="nav" onselectstart="return false;" unselectable="on">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="openurl('index.html');"/>
+	    	<span class="nav_title">加密</span>
+	    	<img class="btn_next" alt="前进" src="src/next.png" onclick="turnToPage('page-algorithmSelect');"/>
+	    </div>
+    	<span class="placeholder">在此输入明文</span>
+	    <div class="input" contenteditable="true">
+	    	
+	    </div>
+	</div>
+	<div class=".unselectable-page" id="page-algorithmSelect" onselectstart="return false;" unselectable="on">
+		<div class="nav">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="openurl('index.html');"/>
+	    	<span class="nav_title">选择算法</span>
+	    </div>
+	    <div class="button-area" id="list-algorithm">
+	    	<div class="no-border-button"><a href="randomtext.html">随机打乱</a></div>
+			<div class="no-border-button"><a href="">凯撒密码</a></div>
+			<div class="no-border-button"><a href="">Base 64</a></div>
+			<div class="no-border-button"><a href="">摩尔斯电码</a></div>
+			<div class="no-border-button"><a href="">Emoji表情加密</a></div>
+			<div class="no-border-button"><a href="">AES-256-ECB</a></div>
+	    </div>
+	</div>
+	
+</body>
+</html>
