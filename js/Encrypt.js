@@ -13,4 +13,3 @@ function randomText(text){
 	}
 	return cypherText;
 }
-alert(randomText("ab😍cde😇😘fg😬"));

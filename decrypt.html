@@ -6,21 +6,51 @@
 	<title>密语解密</title>
 	<link rel="stylesheet" type="text/css" href="css/hole.css">
     <script type="text/javascript" src="js/hole.js"></script>
+    <script type="text/javascript" src="js/Decrypt.js"></script>
     <style>
+		.button-area{
+			display: block;
+		}
 		.no-border-button{
-			margin-top: 15pt;
+			margin-top: 25pt;
+		}
+		#page-input{
+			visibility: visible;
 		}
     </style>
 </head>
 <body>
-	<div class="nav">
-    	<img class="btn_back" alt="返回" src="src/back.png" onclick="openurl('index.html');"/>
-    	选择算法
-    </div>
-	<div class="no-border-button"><a href="">凯撒密码</a></div>
-    <div class="no-border-button"><a href="">Base 64</a></div>
-	<div class="no-border-button"><a href="">摩尔斯电码</a></div>
-	<div class="no-border-button"><a href="">Emoji 表情加密</a></div>
-	<div class="no-border-button"><a href="">AES-256-ECB</a></div>
+	<div class="page" id="page-input">
+		<div class="nav" onselectstart="return false;" unselectable="on">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="openurl('index.html');"/>
+	    	<span class="nav_title">解密</span>
+	    	<img class="btn_next" style="visibility:hidden;" alt="前进" src="src/next.png" onclick="turnToPage('page-algorithmSelect'); setCypherText();"/>
+	    </div>
+    	<span class="placeholder" id="ph-cypherText">在此输入密文</span>
+	    <div class="input" id='cypherText' contenteditable="true" oninput="cypherTextInputChange();" onblur="cypherTextInputChange();"></div>
+	</div>
+
+	<div class="unselectable-page" id="page-algorithmSelect" onselectstart="return false;" unselectable="on">
+		<div class="nav">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="turnToPage('page-input');"/>
+	    	<span class="nav_title">选择算法</span>
+	    </div>
+	    <div class="button-area" id="list-algorithm">
+			<div class="no-border-button" onclick="setSelectedAlgorithmD(0);">凯撒密码</div>
+			<div class="no-border-button" onclick="setSelectedAlgorithmD(1);">Base 64</div>
+			<div class="no-border-button" onclick="setSelectedAlgorithmD(2);">摩尔斯电码</div>
+			<div class="no-border-button" onclick="setSelectedAlgorithmD(3);">Emoji表情加密</div>
+			<div class="no-border-button" onclick="setSelectedAlgorithmD(4);">AES-256-ECB</div>
+	    </div>
+	</div>
+
+	<div class="page" id="page-result">
+		<div class="nav" onselectstart="return false;" unselectable="on">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="turnToPage('page-algorithmSelect');"/>
+	    	<span class="nav_title">明文</span>
+	    </div>
+	    <div class="input" id='result'>
+	    </div>
+	</div>
 </body>
 </html>

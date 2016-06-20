@@ -11,6 +11,11 @@ body {
 }
 .page, .unselectable-page{
 	height: 100%;
+	width: 100%;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	visibility: hidden;
 }
 .unselectable-area, .nav, .unselectable-page{
 	-webkit-touch-callout:none;
@@ -47,23 +52,18 @@ body {
 	color: white;
 }
 .no-border-button{
-	text-decoration: none;
 	margin-left: auto;
 	margin-right: auto;
 	text-align: center;
 	font-size:17px;
-}
-a{
-	text-decoration:none;
 	color: #249CE9;
+	cursor: pointer;
+	display: block;
 }
-a:hover{
+.no-border-button:hover{
 	color: #6FC1FF;
 }
-a:active {
-	color: #249CE9;
-}
-a:visited {
+.no-border-button:active {
 	color: #249CE9;
 }
 .nav{
@@ -97,4 +97,9 @@ a:visited {
 	bottom: 15px;
 	right: 15px;
 	overflow-y: scroll;
+}
+.placeholder{
+	display: block;
+	margin: 15px 15px 15px 15px;
+	color: #989898;
 }
