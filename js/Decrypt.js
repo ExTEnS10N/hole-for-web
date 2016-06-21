@@ -1,0 +1,29 @@
+function caesarCode(text, shift){
+	var cypherText = "";
+	var lalpha = "abcdefghijklmnopqrstuvwxyz";
+	var ualpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	for (var i = 0; i < text.length; i++) {
+		var lindex = lalpha.indexOf(text.charAt(i));
+		if (lindex >= 0){
+			var shiftIndex = (shift + lindex) % 26;
+			if(shiftIndex < 0)
+			{
+				shiftIndex += 26;
+			}
+			cypherText += lalpha.charAt(shiftIndex);
+			continue;
+		}
+		var uindex = ualpha.indexOf(text.charAt(i));
+		if(uindex >= 0){
+			var shiftIndex = (shift + uindex) % 26;
+			if(shiftIndex < 0)
+			{
+				shiftIndex += 26;
+			}
+			cypherText += ualpha.charAt(shiftIndex);
+			continue;
+		}
+		cypherText += text.charAt(i);
+	}
+	return cypherText;
+}

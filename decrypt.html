@@ -11,11 +11,14 @@
 		.button-area{
 			display: block;
 		}
-		.no-border-button{
+		.no-border-button, input{
 			margin-top: 25pt;
 		}
 		#page-input{
 			visibility: visible;
+		}
+		#shift{
+			ime-mode: disabled;
 		}
     </style>
 </head>
@@ -27,7 +30,7 @@
 	    	<img class="btn_next" style="visibility:hidden;" alt="前进" src="src/next.png" onclick="turnToPage('page-algorithmSelect'); setCypherText();"/>
 	    </div>
     	<span class="placeholder" id="ph-cypherText">在此输入密文</span>
-	    <div class="input" id='cypherText' contenteditable="true" oninput="cypherTextInputChange();" onblur="cypherTextInputChange();"></div>
+	    <div class="input" id='cypherText' tabindex="0" contenteditable="true" oninput="cypherTextInputChange();" onblur="cypherTextInputChange();"></div>
 	</div>
 
 	<div class="unselectable-page" id="page-algorithmSelect" onselectstart="return false;" unselectable="on">
@@ -44,6 +47,18 @@
 	    </div>
 	</div>
 
+	<div class="unselectable-page" id="page-caesar" onselectstart="return false;" unselectable="on">
+		<div class="nav">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="turnToPage('page-algorithmSelect');"/>
+	    	<span class="nav_title">高级</span>
+	    	<img class="btn_next" alt="前进" src="src/next.png" onclick="setCaesarConfigD(2);"/>
+	    </div>
+	    <div class="button-area" id="list-algorithm">
+	    	<div class="no-border-button" onclick="setCaesarConfigD(0);">随机偏移</div>
+	    	<input id="shift" type="number" name="shift" placeholder="自定义偏移量"/>
+	    </div>
+	</div>
+
 	<div class="page" id="page-result">
 		<div class="nav" onselectstart="return false;" unselectable="on">
 	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="turnToPage('page-algorithmSelect');"/>
@@ -52,5 +67,6 @@
 	    <div class="input" id='result'>
 	    </div>
 	</div>
+	<script type="text/javascript">document.getElementById('cypherText').focus();</script>
 </body>
 </html>
