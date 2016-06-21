@@ -33,6 +33,7 @@ function setSelectedAlgorithmE(selection){
 			turnToPage('page-result');
 			break;
 		case 1:
+			turnToPage('page-caesar');
 			break;
 		case 2:
 			resultE = window.atob(plainText);
@@ -59,6 +60,44 @@ function plainTextInputChange(){
 	}
 }
 
+function setCaesarConfigE(selection){
+	switch(selection){
+		case 0:
+			resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
+			if (resultE != null){
+				document.getElementById('result').innerHTML = resultE;
+				turnToPage('page-result');
+			}
+			else{ alert("很抱歉\n加密失败！"); }
+			break;
+		case 1:
+			var shift = parseInt(document.getElementById('shift').value);
+			if (isNaN(shift)) {alert("请输入数字");}
+			else {
+				resultE = caesarCode(plainText, shift);
+				document.getElementById('result').innerHTML = resultE;
+				turnToPage('page-result');
+			}
+			break;
+		default:
+			var shift = parseInt(document.getElementById('shift').value);
+			if (isNaN(shift)) {
+				resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
+				if (resultE != null){
+					document.getElementById('result').innerHTML = resultE;
+					turnToPage('page-result');
+				}
+				else{ alert("很抱歉\n加密失败！"); }
+			}
+			else {
+				resultE = caesarCode(plainText, shift);
+				document.getElementById('result').innerHTML = resultE;
+				turnToPage('page-result');
+			}
+			break;
+	}
+}
+
 // #region decrypt 
 
 var cypherText = "";
@@ -71,6 +110,7 @@ var resultD = "";
 function setSelectedAlgorithmD(selection){
 	switch(selection){
 		case 0:
+			turnToPage('page-caesar');
 			break;
 		case 1:
 			resultD = window.btoa(plainText);
@@ -100,5 +140,43 @@ function cypherTextInputChange(){
 	else{
 		document.getElementById('ph-cypherText').style.visibility = 'inherit';
 		document.getElementById('page-input').getElementsByClassName('btn_next')[0].style.visibility = 'hidden';
+	}
+}
+
+function setCaesarConfigD(selection){
+	switch(selection){
+		case 0:
+			resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
+			if (resultE != null){
+				document.getElementById('result').innerHTML = resultE;
+				turnToPage('page-result');
+			}
+			else{ alert("很抱歉\n加密失败！"); }
+			break;
+		case 1:
+			var shift = parseInt(document.getElementById('shift').value);
+			if (isNaN(shift)) {alert("请输入数字");}
+			else {
+				resultE = caesarCode(cypherText, shift);
+				document.getElementById('result').innerHTML = resultE;
+				turnToPage('page-result');
+			}
+			break;
+		default:
+			var shift = parseInt(document.getElementById('shift').value);
+			if (isNaN(shift)) {
+				resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
+				if (resultE != null){
+					document.getElementById('result').innerHTML = resultE;
+					turnToPage('page-result');
+				}
+				else{ alert("很抱歉\n加密失败！"); }
+			}
+			else {
+				resultE = caesarCode(cypherText, shift);
+				document.getElementById('result').innerHTML = resultE;
+				turnToPage('page-result');
+			}
+			break;
 	}
 }
