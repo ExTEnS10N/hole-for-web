@@ -4,6 +4,12 @@ function openurl(url){
 	window.location.href = url;
 }
 
+function removeHTML(text)
+{
+   var reg=/<[^<>]+>/g;
+   return text.replace(reg,'');
+}
+
 function turnToPage(pageid){
 	var pages = document.getElementsByClassName("page");
 	for (var i = pages.length - 1; i >= 0; i--) {
@@ -20,7 +26,7 @@ function turnToPage(pageid){
 // #region encrypt 
 var plainText = "";
 function setPlainText(){
-	plainText = document.getElementById("plainText").innerHTML;
+	plainText = removeHTML(document.getElementById("plainText").innerHTML);
 }
 
 var selectedAlgorithmE = 0;
@@ -36,7 +42,7 @@ function setSelectedAlgorithmE(selection){
 			turnToPage('page-caesar');
 			break;
 		case 2:
-			resultE = window.atob(plainText);
+			resultE = base64(plainText);
 			document.getElementById('result').innerHTML = resultE;
 			turnToPage('page-result');
 			break;
@@ -113,7 +119,7 @@ function setSelectedAlgorithmD(selection){
 			turnToPage('page-caesar');
 			break;
 		case 1:
-			resultD = window.btoa(plainText);
+			resultD = base64(cypherText);
 			if (resultD != null){
 				document.getElementById('result').innerHTML = resultD;
 				turnToPage('page-result');
