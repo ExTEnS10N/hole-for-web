@@ -26,7 +26,7 @@ function turnToPage(pageid){
 // #region encrypt 
 var plainText = "";
 function setPlainText(){
-	plainText = removeHTML(document.getElementById("plainText").innerHTML);
+	plainText = document.getElementById("plainText").textContent;
 }
 
 var selectedAlgorithmE = 0;
@@ -35,7 +35,7 @@ function setSelectedAlgorithmE(selection){
 	switch(selection){
 		case 0:
 			resultE = randomText(plainText);
-			document.getElementById('result').innerHTML = resultE;
+			document.getElementById('result').textContent = resultE;
 			turnToPage('page-result');
 			break;
 		case 1:
@@ -43,7 +43,7 @@ function setSelectedAlgorithmE(selection){
 			break;
 		case 2:
 			resultE = base64(plainText);
-			document.getElementById('result').innerHTML = resultE;
+			document.getElementById('result').textContent = resultE;
 			turnToPage('page-result');
 			break;
 		case 3:
@@ -71,7 +71,7 @@ function setCaesarConfigE(selection){
 		case 0:
 			resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
 			if (resultE != null){
-				document.getElementById('result').innerHTML = resultE;
+				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
 			else{ alert("很抱歉\n加密失败！"); }
@@ -81,7 +81,7 @@ function setCaesarConfigE(selection){
 			if (isNaN(shift)) {alert("请输入数字");}
 			else {
 				resultE = caesarCode(plainText, shift);
-				document.getElementById('result').innerHTML = resultE;
+				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
 			break;
@@ -90,14 +90,14 @@ function setCaesarConfigE(selection){
 			if (isNaN(shift)) {
 				resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
 				if (resultE != null){
-					document.getElementById('result').innerHTML = resultE;
+					document.getElementById('result').textContent = resultE;
 					turnToPage('page-result');
 				}
 				else{ alert("很抱歉\n加密失败！"); }
 			}
 			else {
 				resultE = caesarCode(plainText, shift);
-				document.getElementById('result').innerHTML = resultE;
+				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
 			break;
@@ -108,7 +108,7 @@ function setCaesarConfigE(selection){
 
 var cypherText = "";
 function setCypherText(){
-	cypherText = document.getElementById("cypherText").innerHTML;
+	cypherText = document.getElementById("cypherText").textContent;
 }
 
 var selectedAlgorithmD = 0;
@@ -121,7 +121,7 @@ function setSelectedAlgorithmD(selection){
 		case 1:
 			resultD = base64(cypherText);
 			if (resultD != null){
-				document.getElementById('result').innerHTML = resultD;
+				document.getElementById('result').textContent = resultD;
 				turnToPage('page-result');
 			}
 			else{
@@ -154,7 +154,7 @@ function setCaesarConfigD(selection){
 		case 0:
 			resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
 			if (resultE != null){
-				document.getElementById('result').innerHTML = resultE;
+				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
 			else{ alert("很抱歉\n加密失败！"); }
@@ -164,7 +164,7 @@ function setCaesarConfigD(selection){
 			if (isNaN(shift)) {alert("请输入数字");}
 			else {
 				resultE = caesarCode(cypherText, shift);
-				document.getElementById('result').innerHTML = resultE;
+				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
 			break;
@@ -173,14 +173,14 @@ function setCaesarConfigD(selection){
 			if (isNaN(shift)) {
 				resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
 				if (resultE != null){
-					document.getElementById('result').innerHTML = resultE;
+					document.getElementById('result').textContent = resultE;
 					turnToPage('page-result');
 				}
 				else{ alert("很抱歉\n加密失败！"); }
 			}
 			else {
 				resultE = caesarCode(cypherText, shift);
-				document.getElementById('result').innerHTML = resultE;
+				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
 			break;

@@ -1,7 +1,14 @@
 function randomText(text){
 	var charset = new Array();
 	for (var i = 0; i < text.length; i++) {
-		charset[i] = text.charAt(i);
+		var emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
+		if(i != text.length - 1 && emoji.test(text.substr(i, 2))) {
+			charset[charset.length] = text.substr(i, 2);
+			i++;
+		}
+		else{
+			charset[charset.length] = text.charAt(i);
+		}
 	}
 	var cypherText = "";
 	var k = new Array();
