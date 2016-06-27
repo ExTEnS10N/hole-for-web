@@ -29,26 +29,36 @@ function setPlainText(){
 	plainText = document.getElementById("plainText").textContent;
 }
 
+function passwordChange(){
+	if (document.getElementById('aespassword').value.length > 0){
+		document.getElementById('page-aes').getElementsByClassName('btn_next')[0].style.visibility = 'inherit';
+	}
+	else{
+		document.getElementById('page-aes').getElementsByClassName('btn_next')[0].style.visibility = 'hidden';
+	}
+}
+
 var selectedAlgorithmE = 0;
-var resultE = "";
+var result = "";
 function setSelectedAlgorithmE(selection){
 	switch(selection){
 		case 0:
-			resultE = randomText(plainText);
-			document.getElementById('result').textContent = resultE;
+			result = Encrypt.randomText(plainText);
+			document.getElementById('result').textContent = result;
 			turnToPage('page-result');
 			break;
 		case 1:
 			turnToPage('page-caesar');
 			break;
 		case 2:
-			resultE = base64(plainText);
-			document.getElementById('result').textContent = resultE;
+			result = Encrypt.base64(plainText);
+			document.getElementById('result').textContent = result;
 			turnToPage('page-result');
 			break;
 		case 3:
 		case 4:
 		case 5:
+			turnToPage('page-aes');
 		default:
 			break;
 	}
@@ -56,7 +66,7 @@ function setSelectedAlgorithmE(selection){
 }
 
 function plainTextInputChange(){
-	if (document.getElementById('plainText').innerHTML.length > 0){
+	if (document.getElementById('plainText').textContent.length > 0){
 		document.getElementById('ph-plainText').style.visibility = 'hidden';
 		document.getElementById('page-input').getElementsByClassName('btn_next')[0].style.visibility = 'visible';
 	}
@@ -69,9 +79,9 @@ function plainTextInputChange(){
 function setCaesarConfigE(selection){
 	switch(selection){
 		case 0:
-			resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
-			if (resultE != null){
-				document.getElementById('result').textContent = resultE;
+			result = Encrypt.caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
+			if (result != null){
+				document.getElementById('result').textContent = result;
 				turnToPage('page-result');
 			}
 			else{ alert("很抱歉\n加密失败！"); }
@@ -80,28 +90,41 @@ function setCaesarConfigE(selection){
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {alert("请输入数字");}
 			else {
-				resultE = caesarCode(plainText, shift);
-				document.getElementById('result').textContent = resultE;
+				result = Encrypt.caesarCode(plainText, shift);
+				document.getElementById('result').textContent = result;
 				turnToPage('page-result');
 			}
 			break;
 		default:
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {
-				resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
-				if (resultE != null){
-					document.getElementById('result').textContent = resultE;
+				result = Encrypt.caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
+				if (result != null){
+					document.getElementById('result').textContent = result;
 					turnToPage('page-result');
 				}
 				else{ alert("很抱歉\n加密失败！"); }
 			}
 			else {
-				resultE = caesarCode(plainText, shift);
-				document.getElementById('result').textContent = resultE;
+				result = Encrypt.caesarCode(plainText, shift);
+				document.getElementById('result').textContent = result;
 				turnToPage('page-result');
 			}
 			break;
 	}
+}
+
+
+function setAESConfig(isEncrypt){
+	if (isEncrypt){
+		result = Encrypt.aes_128_ecb(plainText, document.getElementById('aespassword').value);
+		document.getElementById('result').textContent = result;
+	}
+	else{
+		result = Decrypt.aes_128_ecb(cypherText, document.getElementById('aespassword').value);
+		document.getElementById('result').textContent = result;
+	}
+	turnToPage('page-result');
 }
 
 // #region decrypt 
@@ -119,7 +142,7 @@ function setSelectedAlgorithmD(selection){
 			turnToPage('page-caesar');
 			break;
 		case 1:
-			resultD = base64(cypherText);
+			resultD = Decrypt.base64(cypherText);
 			if (resultD != null){
 				document.getElementById('result').textContent = resultD;
 				turnToPage('page-result');
@@ -132,6 +155,7 @@ function setSelectedAlgorithmD(selection){
 		case 3:
 		case 4:
 		case 5:
+			turnToPage('page-aes');
 		default:
 			break;
 	}
@@ -139,7 +163,7 @@ function setSelectedAlgorithmD(selection){
 }
 
 function cypherTextInputChange(){
-	if (document.getElementById('cypherText').innerHTML.length > 0){
+	if (document.getElementById('cypherText').textContent.length > 0){
 		document.getElementById('ph-cypherText').style.visibility = 'hidden';
 		document.getElementById('page-input').getElementsByClassName('btn_next')[0].style.visibility = 'visible';
 	}
@@ -152,35 +176,35 @@ function cypherTextInputChange(){
 function setCaesarConfigD(selection){
 	switch(selection){
 		case 0:
-			resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
-			if (resultE != null){
-				document.getElementById('result').textContent = resultE;
+			result = Decrypt.caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
+			if (result != null){
+				document.getElementById('result').textContent = result;
 				turnToPage('page-result');
 			}
-			else{ alert("很抱歉\n加密失败！"); }
+			else{ alert("很抱歉\n解密失败！"); }
 			break;
 		case 1:
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {alert("请输入数字");}
 			else {
-				resultE = caesarCode(cypherText, shift);
-				document.getElementById('result').textContent = resultE;
+				result = Decrypt.caesarCode(cypherText, shift);
+				document.getElementById('result').textContent = result;
 				turnToPage('page-result');
 			}
 			break;
 		default:
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {
-				resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
-				if (resultE != null){
-					document.getElementById('result').textContent = resultE;
+				result = Decrypt.caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
+				if (result != null){
+					document.getElementById('result').textContent = result;
 					turnToPage('page-result');
 				}
-				else{ alert("很抱歉\n加密失败！"); }
+				else{ alert("很抱歉\n解密失败！"); }
 			}
 			else {
-				resultE = caesarCode(cypherText, shift);
-				document.getElementById('result').textContent = resultE;
+				result = Decrypt.caesarCode(cypherText, shift);
+				document.getElementById('result').textContent = result;
 				turnToPage('page-result');
 			}
 			break;

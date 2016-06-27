@@ -7,6 +7,9 @@
 	<link rel="stylesheet" type="text/css" href="css/hole.css">
     <script type="text/javascript" src="js/hole.js"></script>
     <script type="text/javascript" src="js/Encrypt.js"></script>
+    <script src="js/aes.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/mode-ecb-min.js"></script>
     <style>
     	.button-area{
 			display: block;
@@ -46,7 +49,7 @@
 			<div class="no-border-button" onclick="setSelectedAlgorithmE(2);">Base 64</div>
 			<div class="no-border-button" onclick="setSelectedAlgorithmE(3);">摩尔斯电码</div>
 			<div class="no-border-button" onclick="setSelectedAlgorithmE(4);">Emoji表情加密</div>
-			<div class="no-border-button" onclick="setSelectedAlgorithmE(5);">AES-256-ECB</div>
+			<div class="no-border-button" onclick="setSelectedAlgorithmE(5);">AES-128-ECB</div>
 	    </div>
 	</div>
 
@@ -59,6 +62,17 @@
 	    <div class="button-area" id="list-algorithm">
 	    	<div class="no-border-button" onclick="setCaesarConfigE(0);">随机偏移</div>
 	    	<input id="shift" type="number" name="shift" placeholder="自定义偏移量"/>
+	    </div>
+	</div>
+
+	<div class="unselectable-page" id="page-aes" onselectstart="return false;" unselectable="on">
+		<div class="nav">
+	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="turnToPage('page-algorithmSelect');"/>
+	    	<span class="nav_title">高级</span>
+	    	<img class="btn_next" style="visibility:hidden;" alt="前进" src="src/next.png" onclick="setAESConfig(true);"/>
+	    </div>
+	    <div class="button-area" id="list-algorithm">
+	    	<input id="aespassword" type="password" name="password" placeholder="请输入密码" oninput="passwordChange();" onblur="passwordChange();"/>
 	    </div>
 	</div>
 
