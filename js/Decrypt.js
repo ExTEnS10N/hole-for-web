@@ -61,15 +61,16 @@ var Decrypt = {
             enc1 = enc2 = enc3 = enc4 = "";  
         } while (i < text.length);  
         return utf8to16(output);  
-    }
+    },
 
     aes_128_ecb: function (text, key){
-        var cipher = CryptoJS.enc.Hex.parse(base64D(text));
-        var decryptedData = CryptoJS.AES.decrypt(CryptoJS.enc.Base64.stringify(cipher), key, {
+        text = CryptoJS.enc.Hex.parse(this.base64(text));
+        key = CryptoJS.enc.Hex.parse(CryptoJS.MD5(key).toString());
+        var decryptedData = CryptoJS.AES.decrypt(CryptoJS.enc.Base64.stringify(text), key, {
                 mode: CryptoJS.mode.ECB,
                 padding: CryptoJS.pad.Pkcs7,
             });
-        return base64D(decryptedData.toString(CryptoJS.enc.Utf8));
+        return decryptedData.toString(CryptoJS.enc.Utf8);
     }
 };
 

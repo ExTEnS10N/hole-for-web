@@ -80,14 +80,13 @@ var Encrypt = {
 	},  
 
 	aes_128_ecb: function (text, key){
-		text = base64E(text);
 		key = CryptoJS.enc.Hex.parse(CryptoJS.MD5(key).toString());
-		var encryptedData = CryptoJS.AES.encrypt(plaintext, key, {
+		var encryptedData = CryptoJS.AES.encrypt(text, key, {
 	        	mode: CryptoJS.mode.ECB,
 	        	padding: CryptoJS.pad.Pkcs7,
 	            format: CryptoJS.format.Hex
 	    });
-	    return base64E(encryptedData.ciphertext.toString());
+	    return this.base64(encryptedData.ciphertext.toString());
 	}
 };
   
