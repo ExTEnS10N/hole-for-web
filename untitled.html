@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<script src="js/aes.js"></script>
+    <script type="text/javascript" src="js/Encrypt.js"></script>
+    <script type="text/javascript" src="js/Decrypt.js"></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/mode-ecb-min.js"></script>
+</head>
+<body>
+	<p id="str">...</p>
+	
+    <script>
+        function stringToHex(str)
+        {
+            var result = '';
+            for(var i = 0; i < str.length; i++)
+            {
+                result += str.charCodeAt(i).toString(16);
+            }
+            return result;
+        }
+     //    var AES = require('aes');
+    	// var plaintext = base64E('abcdefg');
+    	// var key = CryptoJS.enc.Hex.parse(CryptoJS.MD5('33320861').toString());
+     //    var encryptedData = AES.aes_128_ecb(plaintext, key);
+     //    document.getElementById('str').textContent = base64E(encryptedData);
+    document.getElementById('str').textContent = Encrypt.base64('123456');
+    </script>
+</body>
+</html>

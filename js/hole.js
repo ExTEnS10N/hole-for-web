@@ -34,7 +34,7 @@ var resultE = "";
 function setSelectedAlgorithmE(selection){
 	switch(selection){
 		case 0:
-			resultE = randomText(plainText);
+			resultE = Encrypt.randomText(plainText);
 			document.getElementById('result').textContent = resultE;
 			turnToPage('page-result');
 			break;
@@ -42,7 +42,7 @@ function setSelectedAlgorithmE(selection){
 			turnToPage('page-caesar');
 			break;
 		case 2:
-			resultE = base64(plainText);
+			resultE = Encrypt.base64(plainText);
 			document.getElementById('result').textContent = resultE;
 			turnToPage('page-result');
 			break;
@@ -69,7 +69,7 @@ function plainTextInputChange(){
 function setCaesarConfigE(selection){
 	switch(selection){
 		case 0:
-			resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
+			resultE = Encrypt.caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
 			if (resultE != null){
 				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
@@ -80,7 +80,7 @@ function setCaesarConfigE(selection){
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {alert("请输入数字");}
 			else {
-				resultE = caesarCode(plainText, shift);
+				resultE = Encrypt.caesarCode(plainText, shift);
 				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
@@ -88,7 +88,7 @@ function setCaesarConfigE(selection){
 		default:
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {
-				resultE = caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
+				resultE = Encrypt.caesarCode(plainText, Math.floor((Math.random() * 53) - 26));
 				if (resultE != null){
 					document.getElementById('result').textContent = resultE;
 					turnToPage('page-result');
@@ -96,7 +96,7 @@ function setCaesarConfigE(selection){
 				else{ alert("很抱歉\n加密失败！"); }
 			}
 			else {
-				resultE = caesarCode(plainText, shift);
+				resultE = Encrypt.caesarCode(plainText, shift);
 				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
@@ -119,7 +119,7 @@ function setSelectedAlgorithmD(selection){
 			turnToPage('page-caesar');
 			break;
 		case 1:
-			resultD = base64(cypherText);
+			resultD = Decrypt.base64(cypherText);
 			if (resultD != null){
 				document.getElementById('result').textContent = resultD;
 				turnToPage('page-result');
@@ -152,7 +152,7 @@ function cypherTextInputChange(){
 function setCaesarConfigD(selection){
 	switch(selection){
 		case 0:
-			resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
+			resultE = Decrypt.caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
 			if (resultE != null){
 				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
@@ -163,7 +163,7 @@ function setCaesarConfigD(selection){
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {alert("请输入数字");}
 			else {
-				resultE = caesarCode(cypherText, shift);
+				resultE = Decrypt.caesarCode(cypherText, shift);
 				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
@@ -171,7 +171,7 @@ function setCaesarConfigD(selection){
 		default:
 			var shift = parseInt(document.getElementById('shift').value);
 			if (isNaN(shift)) {
-				resultE = caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
+				resultE = Decrypt.caesarCode(cypherText, Math.floor((Math.random() * 53) - 26));
 				if (resultE != null){
 					document.getElementById('result').textContent = resultE;
 					turnToPage('page-result');
@@ -179,7 +179,7 @@ function setCaesarConfigD(selection){
 				else{ alert("很抱歉\n加密失败！"); }
 			}
 			else {
-				resultE = caesarCode(cypherText, shift);
+				resultE = Decrypt.caesarCode(cypherText, shift);
 				document.getElementById('result').textContent = resultE;
 				turnToPage('page-result');
 			}
