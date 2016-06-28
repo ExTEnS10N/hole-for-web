@@ -4,12 +4,6 @@ function openurl(url){
 	window.location.href = url;
 }
 
-function removeHTML(text)
-{
-   var reg=/<[^<>]+>/g;
-   return text.replace(reg,'');
-}
-
 function turnToPage(pageid){
 	var pages = document.getElementsByClassName("page");
 	for (var i = pages.length - 1; i >= 0; i--) {
@@ -43,9 +37,7 @@ var result = "";
 function setSelectedAlgorithmE(selection){
 	switch(selection){
 		case 0:
-			result = Encrypt.randomText(plainText);
-			document.getElementById('result').textContent = result;
-			turnToPage('page-result');
+			turnToPage('page-randomText');
 			break;
 		case 1:
 			turnToPage('page-caesar');
@@ -56,7 +48,9 @@ function setSelectedAlgorithmE(selection){
 			turnToPage('page-result');
 			break;
 		case 3:
+			break;
 		case 4:
+			break;
 		case 5:
 			turnToPage('page-aes');
 		default:
@@ -73,6 +67,34 @@ function plainTextInputChange(){
 	else{
 		document.getElementById('ph-plainText').style.visibility = 'inherit';
 		document.getElementById('page-input').getElementsByClassName('btn_next')[0].style.visibility = 'hidden';
+	}
+}
+
+function setRandomText(selection){
+	switch(selection){
+		case 0:
+			result = Encrypt.randomText(plainText, null);
+			document.getElementById('result').textContent = result;
+			turnToPage('page-result');
+			break;
+		case 1:
+			result = Encrypt.randomText(plainText, Encrypt.symbols);
+			document.getElementById('result').textContent = result;
+			turnToPage('page-result');
+			break;
+		default:
+			var unit = document.getElementById('unit').value;
+			if (unit.length > 0) {
+				result = Encrypt.randomText(plainText, unit);
+				document.getElementById('result').textContent = result;
+				turnToPage('page-result');
+			}
+			else {
+				result = Encrypt.randomText(plainText, null);
+				document.getElementById('result').textContent = result;
+				turnToPage('page-result');
+			}
+			break;
 	}
 }
 
@@ -152,8 +174,11 @@ function setSelectedAlgorithmD(selection){
 			}
 			break;
 		case 2:
+			break;
 		case 3:
+			break;
 		case 4:
+			break;
 		case 5:
 			turnToPage('page-aes');
 		default:

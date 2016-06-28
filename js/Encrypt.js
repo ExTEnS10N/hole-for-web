@@ -1,25 +1,69 @@
 var Encrypt = {
-	randomText: function (text){
+	symbols: ".,!?/\\+=-_;:\"'#$%^&*~∙<>(){}[]|®©™℠×÷。，！？、\\；：♬—“”‘’＃￥％＾＆＊～•《》（）｛｝【】…→←↑↓✓✕ ",
+	randomText: function (text, splitchars){
 		var charset = new Array();
-		for (var i = 0; i < text.length; i++) {
-			var emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
-			if(i != text.length - 1 && emoji.test(text.substr(i, 2))) {
-				charset[charset.length] = text.substr(i, 2);
-				i++;
+		if(splitchars != null){
+			charset[0] = '';
+			var symbolset = new Array();
+			for (var i = 0; i < splitchars.length; i++) {
+				var emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
+				if(i != splitchars.length - 1 && emoji.test(splitchars.substr(i, 2))) {
+					symbolset[symbolset.length] = splitchars.substr(i, 2);
+					i++;
+				}
+				else{
+					symbolset[symbolset.length] = splitchars.charAt(i);
+				}
 			}
-			else{
-				charset[charset.length] = text.charAt(i);
+
+			for (var i = 0; i < text.length; i++) {
+				var emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
+				var achar = '';
+				if(i != text.length - 1 && emoji.test(text.substr(i, 2))) {
+					achar = text.substr(i, 2);
+					i++;
+				}
+				else { achar = text.charAt(i);}
+
+				var charIsUnit = false;
+				for (var j = 0; j < symbolset.length; j++) {
+					if (achar == symbolset[j]){
+						charIsUnit = true;
+						break;
+					}
+				}
+
+				if (charIsUnit){
+					charset[charset.length] = achar;
+					charset[charset.length] = '';
+				}
+				else{
+					charset[charset.length - 1] += achar;
+				}
+			}
+
+		}
+		else{
+			for (var i = 0; i < text.length; i++) {
+				var emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
+				if(i != text.length - 1 && emoji.test(text.substr(i, 2))) {
+					charset[charset.length] = text.substr(i, 2);
+					i++;
+				}
+				else{
+					charset[charset.length] = text.charAt(i);
+				}
 			}
 		}
 		var cypherText = "";
-		var k = new Array();
-		while (charset.length > 0){
-			var j = Math.floor(Math.random() * charset.length);
-			k[text.length - charset.length] = j;
-			cypherText += charset[j];
-			charset.splice(j, 1);
-		}
-		return cypherText;
+			var k = new Array();
+			while (charset.length > 0){
+				var j = Math.floor(Math.random() * charset.length);
+				k[text.length - charset.length] = j;
+				cypherText += charset[j];
+				charset.splice(j, 1);
+			}
+			return cypherText;
 	},
 
 	caesarCode: function (text, shift){
