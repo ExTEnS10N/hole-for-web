@@ -48,8 +48,14 @@ function setSelectedAlgorithmE(selection){
 			turnToPage('page-result');
 			break;
 		case 3:
+			result = Encrypt.dictionaryEncrypt(plainText, Encrypt.morseDict);
+			document.getElementById('result').textContent = result;
+			turnToPage('page-result');
 			break;
 		case 4:
+			result = Encrypt.dictionaryEncrypt(plainText, Encrypt.emojiDict);
+			document.getElementById('result').textContent = result;
+			turnToPage('page-result');
 			break;
 		case 5:
 			turnToPage('page-aes');
@@ -176,11 +182,13 @@ function setSelectedAlgorithmD(selection){
 		case 2:
 			break;
 		case 3:
+			result = Decrypt.dictionaryEncrypt(cypherText, Decrypt.emojiDict);
+			document.getElementById('result').textContent = result;
+			turnToPage('page-result');
 			break;
 		case 4:
-			break;
-		case 5:
 			turnToPage('page-aes');
+			break;
 		default:
 			break;
 	}

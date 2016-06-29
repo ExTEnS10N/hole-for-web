@@ -1,4 +1,22 @@
 var Decrypt = {
+    emojiDict: {
+        "😄": "a", "😁": "b", "😂": "c", "😃": "d", "😄": "e", "😅": "f", "😆": "g", "😇": "h",
+        "😈": "i", "👿": "j", "😉": "k", "😊": "l", "☺️": "m", "😋": "n", "😌": "o", "😍": "p", 
+        "😎": "q", "😏": "r", "😐": "s", "😑": "t", "😒": "u", "😓": "v", "😔": "w", "😕": "x", 
+        "😖": "y", "😗": "z",
+            
+        "😘": "~", "😙": "!", "😚": "@", "😛": "#", "😜": "$", "😝": "%", "😞": "^", "😟": "&",
+        "😠": "*", "😡": "(", "😢": ")", "😣": "_", "😤": "+", "😥": "`", "😦": "-", "😧": "=",
+        "😨": "{", "😩": "}", "😪": "|", "😫": "[", "😬": "]", "😭": "\\", "😮": ":", "😯": "\"",
+        "😰": ";", "😱": "'", "😲": "<", "😳": ">", "😴": "?", "😵": ",", "😶": ".", "😷": "/",
+        "🖐": " ",
+
+        "😸": "A", "😹": "B", "😻": "C", "😼": "D", "😽": "E", "🙀": "F", "😿": "G", "😾": "H",
+        "🙌": "I", "👏": "J", "👋": "K", "👍": "L", "👊": "M", "✊": "N", "✌️": "O", "👌": "P",
+        "✋": "Q", "👐": "R", "💪": "S", "🙏": "T", "☝️": "U", "👆": "V", "👇": "W", "👈": "X",
+        "👉": "Y", "🖕": "Z"
+    },
+
     caesarCode: function (text, shift){
         var cypherText = "";
         var lalpha = "abcdefghijklmnopqrstuvwxyz";
@@ -61,6 +79,31 @@ var Decrypt = {
             enc1 = enc2 = enc3 = enc4 = "";  
         } while (i < text.length);  
         return utf8to16(output);  
+    },
+
+    dictionaryEncrypt: function(text, dict){
+        var cypherText = "";
+
+        for (var i = 0; i < text.length; i++) {
+            var emoji = /[\uD800-\uDBFF][\uDC00-\uDFFF]/;
+            var achar = '';
+            if(i != text.length - 1 && emoji.test(text.substr(i, 2))) {
+                achar = text.substr(i, 2);
+                i++;
+            }
+            else{ achar = text.charAt(i); }
+
+            var found = false;
+            for (var key in dict) {
+                if (key == achar){
+                    cypherText += dict[achar];
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {cypherText += achar;}
+        }
+        return cypherText;
     },
 
     aes_128_ecb: function (text, key){
