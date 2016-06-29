@@ -11,7 +11,7 @@
     	#title {
 			display: block;
 			text-align: center;
-			margin-top: 10pt;
+			margin-top: 15pt;
 			font-size: 20px;
 			cursor: default;
 			color: #232532;
@@ -19,7 +19,7 @@
 		#intro {
 			text-align: center;
 			margin-top: 13px;
-			margin-bottom: 44px;
+			margin-bottom: 35px;
 			font-size: 17px;
 			color:#989898;
 			cursor:default;
@@ -27,19 +27,32 @@
 		.no-border-button{
 			font-size:14px;
 		}
+		#beta{
+			font-size: 12px;
+			color: #bbbbbb;
+			margin-left: auto;
+			margin-right: auto;
+			text-align: center;
+		}
+		#img_download{
+			width: 24px;
+			height: 24px;
+		}
     </style>
 </head>
 <body>
 	<div class="unselectable-area" onselectstart="return false;" unselectable="on">
 		<div id="title">密语 Web 服务</div>
-		<p id="intro">让安全看得见，更好玩</p>
-        
+		<p id="intro">让安全看得见，更好玩 <br/><span id="beta">v0.0.7 beta</span></p>
+		
         <div class="button" onClick="openurl('encrypt.html');">加密</div>
         <div class="button" onClick="openurl('decrypt.html');">解密</div>
-        <div class="button" onClick="openurl('https://appsto.re/cn/RzEw_.i');">↓密语输入法</div>
+        <div class="button" onClick="openurl('https://appsto.re/cn/RzEw_.i');">
+	        <img id="img_download" alt="↓" src="src/download.png" align="center" hspace="1" />
+	        <span>密语输入法</span>
+        </div>
         <div class="button">添加到主屏幕</div>
-        
-        <div class="no-border-button" onclick="openurl('about.html');">
+        <div class="no-border-button" onclick="openurl('about.html')">
             了解更多
         </div>
         
