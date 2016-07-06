@@ -220,6 +220,10 @@ var Encrypt = {
 		return cypherText;
 	},
 
+	morseCode: function(text){
+		return this.dictionaryEncrypt(text.toUpperCase(), Encrypt.morseDict);
+	},
+
 	aes_128_ecb: function (text, key){
 		key = CryptoJS.enc.Hex.parse(CryptoJS.MD5(key).toString());
 		var encryptedData = CryptoJS.AES.encrypt(text, key, {

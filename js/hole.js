@@ -48,7 +48,7 @@ function setSelectedAlgorithmE(selection){
 			turnToPage('page-result');
 			break;
 		case 3:
-			result = Encrypt.dictionaryEncrypt(plainText, Encrypt.morseDict);
+			result = Encrypt.morseCode(plainText);
 			document.getElementById('result').textContent = result;
 			turnToPage('page-result');
 			break;
@@ -180,6 +180,9 @@ function setSelectedAlgorithmD(selection){
 			}
 			break;
 		case 2:
+			result = Decrypt.morseCode(cypherText);
+			document.getElementById('result').textContent = result;
+			turnToPage('page-result');
 			break;
 		case 3:
 			result = Decrypt.dictionaryEncrypt(cypherText, Decrypt.emojiDict);

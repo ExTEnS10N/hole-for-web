@@ -17,6 +17,62 @@ var Decrypt = {
         "👉": "Y", "🖕": "Z"
     },
 
+    morseDict: {
+        "A" : "．━ ",
+        "E" : "． ",
+        "I" : "．． ",
+        "M" : "━━ ",
+        "Q" : "━━．━ ",
+        "U" : "．．━ ",
+        "Y" : "━．━━ ",
+        "0" : "━━━━━ ",
+        "4" : "．．．．━ ",
+        "8" : "━━━．． ",
+        "." : "．━．━．━ ",
+        "?" : "．．━━．． ",
+        "!" : "━．━．━━ ",
+        "(" : "━．━━． ",
+        "@" : "．━━．━． ",
+        "B" : "━．．． ",
+        "F" : "．．━． ",
+        "J" : "．━━━ ",
+        "N" : "━． ",
+        "R" : "．━． ",
+        "V" : "．．．━ ",
+        "Z" : "━━．． ",
+        "1" : "．━━━━ ",
+        "5" : "．．．．． ",
+        "9" : "━━━━． ",
+        ":" : "━━━．．． ",
+        "=" : "━．．．━ ",
+        "━" : "━．．．．━ ",
+        ")" : "━．━━．━ ",
+        "C" : "━．━． ",
+        "G" : "━━． ",
+        "K" : "━．━ ",
+        "O" : "━━━ ",
+        "S" : "．．． ",
+        "W" : "．━━ ",
+        "2" : "．．━━━ ",
+        "6" : "━．．．． ",
+        "," : "━━．．━━ ",
+        "'" : "．━━━━． ",
+        "_" : "．．━━．━ ",
+        "$" : "．．．━．．━ ",
+        "D" : "━．． ",
+        "H" : "．．．． ",
+        "L" : "．━．． ",
+        "P" : "．━━． ",
+        "T" : "━ ",
+        "X" : "━．．━ ",
+        "3" : "．．．━━ ",
+        "7" : "━━．．． ",
+        ";" : "━．━．━． ",
+        "/" : "━．．━． ",
+        "\"" : "．━．．━． ",
+        "&" : "．━．．． "
+    },
+
     caesarCode: function (text, shift){
         var cypherText = "";
         var lalpha = "abcdefghijklmnopqrstuvwxyz";
@@ -104,6 +160,34 @@ var Decrypt = {
             if (!found) {cypherText += achar;}
         }
         return cypherText;
+    },
+
+    morseCode: function(text){
+        var code = "";
+        var result = "";
+        for (var i = 0; i < text.length; i++) {
+            var achar = text.charAt(i);
+            if (achar == "━" || achar == "．")
+            {
+                code += achar;
+            }
+            else if (achar != " "){
+                result += achar;
+                continue;
+            }
+            if (achar == " " || i == text.length - 1){
+                code += " ";
+                for (var key in this.morseDict){
+                    if(code == this.morseDict[key]){
+                        result += key;
+                        break;
+                    }
+                }
+                code = "";
+            }
+            
+        }
+        return result;
     },
 
     aes_128_ecb: function (text, key){
