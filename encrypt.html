@@ -4,26 +4,28 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width,initial-scale=1.0">
 	<title>密语加密</title>
-	<link rel="stylesheet" type="text/css" href="css/hole.css">
-    <script type="text/javascript" src="js/hole.js"></script>
+	<link rel="shotcut icon" href="favicon.ico">
+    <script type="text/javascript" src="js/hole.js" async></script>
     <script type="text/javascript" src="js/Encrypt.js" async></script>
     <script src="js/aes.js" async></script>
     <script type="text/javascript" src="js/md5.js" async></script>
+    <script type="text/javascript" src="js/sha256.js"></script>
     <script type="text/javascript" src="js/mode-ecb-min.js" async></script>
+	<link rel="stylesheet" type="text/css" href="css/hole.css">
     <style>
-    	.button-area{
-			display: block;
-		}
-		.no-border-button, input{
-			margin-top: 25pt;
-		}
 		#page-input{
 			visibility: visible;
 		}
 		#shift{
 			ime-mode: disabled;
 		}
-
+		.btn-area{
+			margin-top: 50px;
+		}
+		.list *{
+			margin-top: 40px;
+			margin-bottom: 40px;
+		}
     </style>
 </head>
 
@@ -43,7 +45,7 @@
 	    	<img class="btn_back" alt="返回" src="src/back.png" onclick="turnToPage('page-input');"/>
 	    	<span class="nav_title">选择算法</span>
 	    </div>
-	    <div class="button-area" id="list-algorithm">
+	    <div class="btn-area">
 	    	<div class="no-border-button" onclick="setSelectedAlgorithmE(0);">随机打乱</div>
 			<div class="no-border-button" onclick="setSelectedAlgorithmE(1);">凯撒密码</div>
 			<div class="no-border-button" onclick="setSelectedAlgorithmE(2);">Base 64</div>
@@ -59,7 +61,7 @@
 	    	<span class="nav_title">高级</span>
 	    	<img class="btn_next" alt="前进" src="src/next.png" onclick="setRandomText(2);"/>
 	    </div>
-	    <div class="button-area" id="list-algorithm">
+	    <div class="list">
 	    	<div class="no-border-button" onclick="setRandomText(0);">逐字符打乱</div>
 	    	<div class="no-border-button" onclick="setRandomText(1);">逐字词打乱（中文逐句）</div>
 	    	<input id="unit" type="text" name="unit" placeholder="自定义切分单位"/>
@@ -72,7 +74,7 @@
 	    	<span class="nav_title">高级</span>
 	    	<img class="btn_next" alt="前进" src="src/next.png" onclick="setCaesarConfigE(2);"/>
 	    </div>
-	    <div class="button-area" id="list-algorithm">
+	    <div class="list">
 	    	<div class="no-border-button" onclick="setCaesarConfigE(0);">随机偏移</div>
 	    	<input id="shift" type="number" name="shift" placeholder="自定义偏移量"/>
 	    </div>
@@ -84,7 +86,7 @@
 	    	<span class="nav_title">高级</span>
 	    	<img class="btn_next" style="visibility:hidden;" alt="前进" src="src/next.png" onclick="setAESConfig(true);"/>
 	    </div>
-	    <div class="button-area" id="list-algorithm">
+	    <div class="list">
 	    	<input id="aespassword" type="password" name="password" placeholder="请输入密码" oninput="passwordChange();" onblur="passwordChange();"/>
 	    </div>
 	</div>

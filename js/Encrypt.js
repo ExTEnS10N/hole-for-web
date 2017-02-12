@@ -1,7 +1,7 @@
 var Encrypt = {
 	symbols: ".,!?/\\+=-_;:\"'#$%^&*~∙<>(){}[]|®©™℠×÷。，！？、\\；：♬—“”‘’＃￥％＾＆＊～•《》（）｛｝【】…→←↑↓✓✕ ",
 	emojiDict: {
-		"a": "😄", "b": "😁", "c": "😂", "d": "😃", "e": "😄", "f": "😅", "g": "😆", "h": "😇",
+		"a": "😄", "b": "😁", "c": "😂", "d": "😃", "e": "😀", "f": "😅", "g": "😆", "h": "😇",
 		"i": "😈", "j": "👿", "k": "😉", "l": "😊", "m": "☺️", "n": "😋", "o": "😌", "p": "😍",
 		"q": "😎", "r": "😏", "s": "😐", "t": "😑", "u": "😒", "v": "😓", "w": "😔", "x": "😕",
 		"y": "😖", "z": "😗",
@@ -232,7 +232,17 @@ var Encrypt = {
 	            format: CryptoJS.format.Hex
 	    });
 	    return this.base64(encryptedData.ciphertext.toString());
-	}
+	},
+
+	// aes_256_ecb: function(text, key){
+	// 	key = CryptoJS.enc.Hex.parse(CryptoJS.SHA256(key).toString());
+	// 	var encryptedData = CryptoJS.AES.encrypt(text, key, {
+	//         	mode: CryptoJS.mode.ECB,
+	//         	padding: CryptoJS.pad.Pkcs7,
+	//             format: CryptoJS.format.Hex
+	//     });
+	//     return this.base64(encryptedData.ciphertext.toString());
+	// }
 };
   
 function utf16to8(str) {  

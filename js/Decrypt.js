@@ -1,6 +1,6 @@
 var Decrypt = {
     emojiDict: {
-        "😄": "a", "😁": "b", "😂": "c", "😃": "d", "😄": "e", "😅": "f", "😆": "g", "😇": "h",
+        "😄": "a", "😁": "b", "😂": "c", "😃": "d", "😀": "e", "😅": "f", "😆": "g", "😇": "h",
         "😈": "i", "👿": "j", "😉": "k", "😊": "l", "☺️": "m", "😋": "n", "😌": "o", "😍": "p", 
         "😎": "q", "😏": "r", "😐": "s", "😑": "t", "😒": "u", "😓": "v", "😔": "w", "😕": "x", 
         "😖": "y", "😗": "z",
@@ -198,7 +198,17 @@ var Decrypt = {
                 padding: CryptoJS.pad.Pkcs7,
             });
         return decryptedData.toString(CryptoJS.enc.Utf8);
-    }
+    },
+
+    // aes_256_ecb: function(text, key){
+    //     text = CryptoJS.enc.Hex.parse(this.base64(text));
+    //     key = CryptoJS.enc.Hex.parse(CryptoJS.SHA256(key).toString());
+    //     var decryptedData = CryptoJS.AES.decrypt(CryptoJS.enc.Base64.stringify(text), key, {
+    //             mode: CryptoJS.mode.ECB,
+    //             padding: CryptoJS.pad.Pkcs7,
+    //         });
+    //     return decryptedData.toString(CryptoJS.enc.Utf8);
+    // }
 };
 
 function utf8to16(str) {  
